@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/abcxyz/pkg/logging"
 	"github.com/yolocs/repo-template-go/pkg/commands"
 )
 
@@ -14,6 +15,10 @@ func main() {
 	ctx, done := signal.NotifyContext(context.Background(),
 		syscall.SIGINT, syscall.SIGTERM)
 	defer done()
+
+	// TODO(optional): use a custom prefix to configure the logger.
+	logger := logging.NewFromEnv("")
+	ctx = logging.WithLogger(ctx, logger)
 
 	if err := realMain(ctx); err != nil {
 		done()

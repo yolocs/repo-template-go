@@ -29,7 +29,7 @@ builds:
       - 'amd64'
       - 'arm64'
     binary: 'repo-template-go'
-    main: './cmd/main'
+    main: './cmd/repo-template-go'
 
 archives:
   - formats:
